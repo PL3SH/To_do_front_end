@@ -5,6 +5,8 @@ export function CardTask({ title, description  ,status }) {
     const [isMarked, setIsMarked] = useState(status);//state para el checkbutton
 
     return (
+        <>
+        
         <div className="w-full max-w-md transition-all duration-300">
             {/* Card Header - Always Visible */}
             <div className="flex items-center justify-between p-4 bg-white/10 backdrop-blur-lg rounded-t-lg border border-white/20">
@@ -46,5 +48,6 @@ export function CardTask({ title, description  ,status }) {
                 </div>
             </div>
         </div>
+        </>
     )
 }

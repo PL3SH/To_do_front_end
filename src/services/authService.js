@@ -21,14 +21,14 @@ export const registerUser = async ({ email, password, password_confirmation }) =
 export const loginUser = async (credentials) => {
   try {
     const response = await api.post('/login', credentials);
-    console.log('Full response headers:', response.headers); // Debug log para ver todos los headers
+    //console.log('Full response headers:', response.headers); // Debug log para ver todos los headers
 
     // Intentar obtener el token del header
     const token = response.headers['authorization'] || 
                  response.headers['x-auth-token'] ||
                  response.headers.get('authorization');
 
-    console.log('Token from headers:', token); // Debug log
+    //console.log('Token from headers:', token); // Debug log
 
     if (!token) {
       console.error('No token found in headers');
@@ -63,6 +63,9 @@ export const logoutUser = async () => {
     return false;
   }
 };
+
+
+
 
 export const getCurrentUser = () => {
   const token = localStorage.getItem('token');
