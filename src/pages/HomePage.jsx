@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { CardLogin } from '../forms/CardLogin'
 import '../App.css'
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,24 @@ import { getTasks } from '../services/taskService';
 function HomePage() {
   const navigate = useNavigate();
   const { setUser } = useAuth();
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  const loadTasks = async () => {
+    try {
+      const tasksData = await getTasks();
+      console.log('Tasks received from server:', tasksData); // Debug log
+      setTasks(tasksData);
+    } catch (error) {
+      console.error("Error loading tasks:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogout = async () => {
     const result = await logoutUser();
@@ -22,44 +40,39 @@ function HomePage() {
     }
   };
 
+
+  
   function CreateCards() {
-    const response = getTasks();
-    
-    // First check if response is null (error case)
-    if (!response || []) {
-        return (
-            <div className="text-center p-4 bg-red-100 rounded-lg">
-                <p className="text-red-600">Error loading tasks. Please try again later.</p>
-            </div>
-        );
+    console.log('Current tasks in state:', tasks); // Debug log
+
+    if (loading) {
+      return <div>Loading tasks...</div>;
     }
 
-    const tasklist = response;
-    
-    // Check if the array is empty
-    if (tasklist.length === 0 || null) {
-        return (
-            <div className="text-center p-4 bg-gray-100 rounded-lg">
-                <p className="text-gray-600">No tasks found. Create your first task!</p>
-            </div>
-        );
+    if (!tasks || tasks.length === 0) {
+      return (
+        <div className="text-center p-4 bg-gray-100 rounded-lg">
+          <p className="text-gray-600">No tasks found. Create your first task!</p>
+        </div>
+      );
     }
-
-    // If we have tasks, render them
-    const list = tasklist.map(task => {
-        return (
-            <li key={task.id} className="mb-4">
-                <CardTask 
-                    title={task.taskname} 
-                    description={task.description} 
-                    status={task.status}
-                />
-            </li>
-        );
-    });
 
     return (
-        <ul className='space-y-4'>{list}</ul>
+      <ul className='space-y-4'>
+        {tasks.map(task => {
+          console.log('Individual task:', task); // Debug log
+          return (
+            <li key={task.id} className="mb-4">
+              <CardTask 
+                title={task.title}
+                description={task.description}
+                status={task.status}
+                dueDate={task.due_date}
+              />
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 
@@ -80,7 +93,7 @@ function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Task Form Section */}
           <div className="md:sticky md:top-8 h-fit">
-            <TaskForm />
+            <TaskForm onTaskCreated={loadTasks} />
           </div>
 
           {/* Task List Section */}

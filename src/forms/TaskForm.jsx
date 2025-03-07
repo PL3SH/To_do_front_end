@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { createTask } from '../services/taskService';
 
-export function TaskForm() {
+export function TaskForm({ onTaskCreated }) {
     // Add state management for form fields
     const [taskName, setTaskName] = useState('');
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         // Validate fields including due date
@@ -16,21 +17,41 @@ export function TaskForm() {
             return;
         }
 
+        // Log the data before sending to verify
+        console.log('Form Data:', { taskName, description, dueDate });
+
         // Create new task object with due date
         const newTask = {
-            taskname: taskName,
+            title: taskName,
             description: description,
-            dueDate: dueDate,
-            status: false
+            due_date: dueDate,
+            completed: false
         };
 
-        // Here you would typically send this to a parent component or API
-        console.log('New Task:', newTask);
+        // Log the task object to verify structure
+        console.log('Task to be sent:', newTask);
 
-        // Clear form
-        setTaskName('');
-        setDescription('');
-        setDueDate('');
+        try {
+            const result = await createTask(newTask);
+            console.log('Response from server:', result); // Add this to debug
+
+            if (result) {
+                // Clear form
+                setTaskName('');
+                setDescription('');
+                setDueDate('');
+                
+                // Only call onTaskCreated if it exists
+                if (onTaskCreated) {
+                    onTaskCreated();
+                }
+            } else {
+                alert('Failed to create task');
+            }
+        } catch (error) {
+            console.error('Error creating task:', error);
+            alert('Error creating task');
+        }
     };
 
     return (

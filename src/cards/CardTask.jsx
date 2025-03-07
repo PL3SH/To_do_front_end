@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-export function CardTask({ title, description  ,status }) {
+export function CardTask({ title, description, status, dueDate }) {
+    console.log('CardTask props:', { title, description, status, dueDate }); // Debug log
+    
     const [isOpen, setIsOpen] = useState(false);//state para abri la card desplegable
     const [isMarked, setIsMarked] = useState(status);//state para el checkbutton
 
@@ -22,7 +24,7 @@ export function CardTask({ title, description  ,status }) {
                     </button>
                     <h2 className="text-xl font-bold text-gray-800 cursor-pointer"
                         onClick={() => setIsOpen(!isOpen)}>
-                        {title}
+                        {title || 'No Title'}
                     </h2>
                 </div>
                 
@@ -44,7 +46,20 @@ export function CardTask({ title, description  ,status }) {
                     : 'max-h-0 opacity-0'
             }`}>
                 <div className="p-4 bg-white/5 backdrop-blur-lg rounded-b-lg border-x border-b border-white/20">
-                    <p className="text-gray-600">{description}</p>
+                    <p className="text-gray-600">{description || 'No Description'}</p>
+                    <div className="mt-2">
+                        <span className={`px-2 py-1 rounded text-sm ${
+                            status === 'completed' ? 'bg-green-100 text-green-800' : 
+                            'bg-yellow-100 text-yellow-800'
+                        }`}>
+                            {status || 'pending'}
+                        </span>
+                        {dueDate && (
+                            <span className="ml-2 text-sm text-gray-500">
+                                Due: {new Date(dueDate).toLocaleDateString()}
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
