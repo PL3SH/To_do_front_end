@@ -42,4 +42,15 @@ export const createTask = async (taskData) => {
         }
         return null;
     }
+
 };
+export const deleteTask = async (id) => {
+    try {
+        const response = await api.delete(`/tasks/${id}`);
+        console.log('Delete response:', response);
+        return true;
+    } catch (error) {
+        console.error('Error deleting task:', error);
+        return false;
+    }
+}

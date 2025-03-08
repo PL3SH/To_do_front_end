@@ -1,10 +1,17 @@
 import { useState } from 'react'
+import { TaskForm } from '../forms/TaskForm';
 
-export function CardTask({ title, description, status, dueDate }) {
-    console.log('CardTask props:', { title, description, status, dueDate }); // Debug log
+export function CardTask({ id, title, description, status, dueDate, onDelete }) {
+    console.log('CardTask props:', { id, title, description, status, dueDate }); // Debug log
     
     const [isOpen, setIsOpen] = useState(false);//state para abri la card desplegable
     const [isMarked, setIsMarked] = useState(status);//state para el checkbutton
+
+    const handleDelete = async () => {
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            onDelete(id);
+        }
+    };
 
     return (
         <>
@@ -29,11 +36,13 @@ export function CardTask({ title, description, status, dueDate }) {
                 </div>
                 
                 {/* Action Buttons */}
-                <div className="flex gap-2 backdrop-blur-lg  ">
-                    <button className="p-2 text-blue-500  hover:bg-blue-100 rounded-full transition-colors">
+                <div className="flex gap-2 backdrop-blur-lg">
+                    <button className="p-2 text-blue-500 hover:bg-blue-100 rounded-full transition-colors">
                         <img src="/edit.svg" alt="Edit" className="w-6 h-6" />
                     </button>
-                    <button className="p-2 text-red-500  hover:bg-red-100 rounded-full transition-colors">
+                    <button 
+                        onClick={handleDelete}
+                        className="p-2 text-red-500 hover:bg-red-100 rounded-full transition-colors">
                         <img src="/delete.svg" alt="Delete" className="w-6 h-6" />
                     </button>
                 </div>

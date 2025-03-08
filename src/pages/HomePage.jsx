@@ -7,7 +7,7 @@ import { CardTask } from '../cards/CardTask'
 import { useAuth } from '../context/authContext';
 import { logoutUser} from '../services/authService'
 import { TaskForm } from '../forms/TaskForm';
-import { getTasks } from '../services/taskService';
+import { getTasks, deleteTask } from '../services/taskService';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -40,8 +40,21 @@ function HomePage() {
     }
   };
 
+  const handleDeleteTask = async (taskId) => {
+    try {
+      console.log('Attempting to delete task:', taskId); // Debug log
+      const success = await deleteTask(taskId);
+      if (success) {
+        setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+      } else {
+        alert('Failed to delete task');
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      alert('Error deleting task');
+    }
+  };
 
-  
   function CreateCards() {
     console.log('Current tasks in state:', tasks); // Debug log
 
@@ -60,14 +73,16 @@ function HomePage() {
     return (
       <ul className='space-y-4'>
         {tasks.map(task => {
-          console.log('Individual task:', task); // Debug log
+          console.log('Task being rendered:', task); // Debug log
           return (
             <li key={task.id} className="mb-4">
               <CardTask 
+                id={task.id}
                 title={task.title}
                 description={task.description}
                 status={task.status}
                 dueDate={task.due_date}
+                onDelete={handleDeleteTask}
               />
             </li>
           );
