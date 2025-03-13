@@ -22,7 +22,7 @@ function HomePage() {
   const loadTasks = async () => {
     try {
       const tasksData = await getTasks();
-      console.log('Tasks received from server:', tasksData); // Debug log
+     // console.log('Tasks received from server:', tasksData); // Debug log
       setTasks(tasksData);
     } catch (error) {
       console.error("Error loading tasks:", error);
@@ -42,7 +42,7 @@ function HomePage() {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      console.log('Attempting to delete task:', taskId); // Debug log
+      //console.log('Attempting to delete task:', taskId); // Debug log
       const success = await deleteTask(taskId);
       if (success) {
         setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
@@ -50,7 +50,7 @@ function HomePage() {
         alert('Failed to delete task');
       }
     } catch (error) {
-      console.error('Error deleting task:', error);
+     // console.error('Error deleting task:', error);
       alert('Error deleting task');
     }
   };
@@ -73,7 +73,7 @@ function HomePage() {
     return (
       <ul className='space-y-4'>
         {tasks.map(task => {
-          console.log('Task being rendered:', task); // Debug log
+          //console.log('Task being rendered:', task); // Debug log
           return (
             <li key={task.id} className="mb-4">
               <CardTask 

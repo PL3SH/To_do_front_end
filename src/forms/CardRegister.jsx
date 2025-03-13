@@ -80,8 +80,13 @@ export function CardRegister () {
                 <button
                     type="submit"
                     className="  w-full bg-radial from-orange-400 via-orange-500 to-orange-600 text-white font-medium py-3  px-4 rounded-xl hover:opacity-90 hover:scale-105 transform transition-all duration-200 hover: shadow-md">
-                    Sign In
+                    Sign up
                 </button>
+
+                <p className="text-center text-orange-600 text-sm">
+                    Do you have an account? 
+                    <a href="/" className=" hover:scale-105 font-medium ml-2">Sign in</a>
+                </p>
             </form>
         </div>
     )

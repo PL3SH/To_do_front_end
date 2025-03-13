@@ -4,7 +4,7 @@ import api from './api';
 export const getTasks = async () => {
     try {
         const response = await api.get('/tasks');
-        console.log('Getting task data:', response.data);
+        //console.log('Getting task data:', response.data);
         // Check if response.data exists and is an array
         if (response.data && Array.isArray(response.data)) {
             return response.data;
@@ -22,7 +22,7 @@ export const getTasks = async () => {
 export const createTask = async (taskData) => {
     try {
         // Log the data being sent
-        console.log('Sending task data:', taskData);
+        //console.log('Sending task data:', taskData);
 
         const response = await api.post('/tasks', taskData);
         
@@ -47,7 +47,7 @@ export const createTask = async (taskData) => {
 export const deleteTask = async (id) => {
     try {
         const response = await api.delete(`/tasks/${id}`);
-        console.log('Delete response:', response);
+        //console.log('Delete response:', response);
         return true;
     } catch (error) {
         console.error('Error deleting task:', error);

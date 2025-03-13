@@ -38,6 +38,8 @@ export function CardLogin () {
     }; 
     return (
         <div className=" flex items-center justify-center  p-4">
+            {/* Background Elements */}
+            
             
             <form onSubmit={handleLogin} className="relative w-full max-w-sm bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20 hover:border-white/40 transition-colors duration-300">
                 <div className="text-center mb-8">

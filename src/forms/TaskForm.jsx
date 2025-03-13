@@ -18,7 +18,7 @@ export function TaskForm({ onTaskCreated }) {
         }
 
         // Log the data before sending to verify
-        console.log('Form Data:', { taskName, description, dueDate });
+       // console.log('Form Data:', { taskName, description, dueDate });
 
         // Create new task object with due date
         const newTask = {
@@ -29,7 +29,7 @@ export function TaskForm({ onTaskCreated }) {
         };
 
         // Log the task object to verify structure
-        console.log('Task to be sent:', newTask);
+       // console.log('Task to be sent:', newTask);
 
         try {
             const result = await createTask(newTask);
