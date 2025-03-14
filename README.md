@@ -9,6 +9,9 @@ Currently, two official plugins are available:
 
 ## Project Overview
 This is the frontend application for a Todo List project built with React. It connects to a Ruby on Rails backend API to provide a complete task management system. The application features a modern, responsive UI with animated background elements.
+![image](https://github.com/user-attachments/assets/e53b54a2-1f4b-476b-b472-a2f56fd5012d)
+
+
 
 ## Project Structure
 
