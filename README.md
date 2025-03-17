@@ -8,7 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Project Overview!
-[codeviz-diagram-2025-03-08T22-45-42](https://github.com/user-attachments/assets/6ed0d73e-0123-441e-bc86-231c9d298481)
+![codeviz-diagram-2025-03-08T22-45-42](https://github.com/user-attachments/assets/6ed0d73e-0123-441e-bc86-231c9d298481)
 
 This is the frontend application for a Todo List project built with React. It connects to a Ruby on Rails backend API to provide a complete task management system. The application features a modern, responsive UI with animated background elements.
 
