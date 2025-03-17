@@ -7,8 +7,11 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Project Overview
+## Project Overview!
+[codeviz-diagram-2025-03-08T22-45-42](https://github.com/user-attachments/assets/6ed0d73e-0123-441e-bc86-231c9d298481)
+
 This is the frontend application for a Todo List project built with React. It connects to a Ruby on Rails backend API to provide a complete task management system. The application features a modern, responsive UI with animated background elements.
+
 ![image](https://github.com/user-attachments/assets/e53b54a2-1f4b-476b-b472-a2f56fd5012d)
 
 
