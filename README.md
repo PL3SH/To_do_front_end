@@ -14,6 +14,7 @@ This is the frontend application for a Todo List project built with React. It co
 
 ![image](https://github.com/user-attachments/assets/e53b54a2-1f4b-476b-b472-a2f56fd5012d)
 
+![image](https://github.com/user-attachments/assets/68e77bd0-4a91-435d-b9d1-f53f94ad04ca)
 
 
 ## Project Structure
